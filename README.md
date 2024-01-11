@@ -1,4 +1,4 @@
-# subar
+# subar ![screenshot](https://github.com/sublipri/subar/assets/139193760/f3e17f7c-b194-45cc-af84-17d5378cb83c)
 
 This is a relatively basic status bar for [sway](https://swaywm.org/) and [i3](https://i3wm.org/). It's not intended to be a serious project that works for lots of use cases, but perhaps others will find it useful.
 
