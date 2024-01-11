@@ -50,8 +50,8 @@ async fn main() -> Result<()> {
             status.full_text.push(' ');
         }
         let now = Local::now();
-        let datetime = now.format("🗓️ %a %b %d 🕛 %T");
-        status.full_text.push_str(&format!("{}", datetime));
+        let datetime = now.format("🗓️ %a %b %d 🕛 %T").to_string();
+        status.full_text.push_str(&datetime);
 
         println!("[{}],", serde_json::to_string(&status).unwrap());
         sleep(Duration::from_millis(MAIN_UDPDATE_FREQUENCY)).await;
