@@ -160,13 +160,12 @@ async fn volume_task(tx: watch::Sender<String>) -> Result<()> {
 }
 
 async fn mpd_task(tx: watch::Sender<String>) -> Result<()> {
+    let host = if let Ok(host) = env::var("MPD_HOST") {
+        host
+    } else {
+        MPD_DEFAULT_HOST.to_string()
+    };
     loop {
-        let host = if let Ok(host) = env::var("MPD_HOST") {
-            host
-        } else {
-            MPD_DEFAULT_HOST.to_string()
-        };
-
         let connection = if host.starts_with('/') {
             match UnixStream::connect(&host).await {
                 Ok(conn) => Client::connect(conn).await,
