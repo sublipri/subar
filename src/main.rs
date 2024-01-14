@@ -44,6 +44,7 @@ async fn main() -> Result<()> {
     println!("{}", serde_json::to_string(&header).unwrap());
     println!("[");
     let mut status = StatusLine::default();
+    let sleep_duration = Duration::from_millis(MAIN_UDPDATE_FREQUENCY);
     loop {
         for task in &tasks {
             status.full_text.push_str(&task.status());
@@ -54,7 +55,7 @@ async fn main() -> Result<()> {
         status.full_text.push_str(&datetime);
 
         println!("[{}],", serde_json::to_string(&status).unwrap());
-        sleep(Duration::from_millis(MAIN_UDPDATE_FREQUENCY)).await;
+        sleep(sleep_duration).await;
         status.full_text.clear();
     }
 }
